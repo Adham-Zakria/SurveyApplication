@@ -1,0 +1,94 @@
+﻿{
+   "CodeGenerationMode": 4,
+   "ContextClassName": "SurveyAppContext",
+   "ContextNamespace": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "MinimumProductVersion": "2.6.1130",
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "Domain",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[branch]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[departments]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[question_comments]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[question_images]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[question_options]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[question_types]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[questionnaires]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[questionnaires_branchs]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[questions]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[questions_answers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[user_groups]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[users]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": null,
+   "UncountableWords": null,
+   "UseAsyncStoredProcedureCalls": true,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDatabaseNamesForRoutines": true,
+   "UseDateOnlyTimeOnly": true,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseInternalAccessModifiersForSprocsAndFunctions": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false,
+   "UseT4Split": false
+}
