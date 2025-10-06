@@ -10,9 +10,6 @@ namespace ServicesAbstraction
 {
     public interface IAnswerService
     {
-        //Task SubmitAnswerAsync(QuestionsAnswer answer);
-        //Task<IEnumerable<QuestionsAnswer>> GetAnswersByUserAsync(int userId);
-
         Task SubmitAnswersAsync(SubmitAnswersRequestDto dto);
         Task<UserAnswersResponseDto?> GetUserAnswersAsync(int userId);
     }

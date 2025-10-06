@@ -14,5 +14,4 @@ namespace Shared.AuthDTOs
         public int UserGroup { get; set; }
         public int UserDepartment { get; set; }
     }
-
 }

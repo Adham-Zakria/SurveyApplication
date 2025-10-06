@@ -13,8 +13,6 @@ namespace Domain.Contracts
         Task<IEnumerable<QuestionsAnswer>> GetAnswersByUserAsync(int userId);
         Task AddImageAsync(QuestionImage image);
         Task AddCommentAsync(QuestionComment comment);
-        //Task<UserAnswersResponseDto?> GetUserAnswersAsync(int userId);
-
         Task<List<QuestionImage>> GetUserImagesAsync(List<int> questionIds);
         Task<List<QuestionComment>> GetUserCommentsAsync(List<int> questionIds);
         Task<List<QuestionsAnswer>> GetUserAnswersAsync(int userId);

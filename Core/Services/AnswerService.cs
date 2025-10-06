@@ -16,15 +16,6 @@ namespace Services
 {
     public class AnswerService(IAnswerRepository _answerRepository, IWebHostEnvironment _env, IUserRepository _userRepository) : IAnswerService
     {
-        //public async Task SubmitAnswerAsync(QuestionsAnswer answer)
-        //{
-        //    await _answerRepository.AddAnswerAsync(answer);
-        //}
-
-        //public async Task<IEnumerable<QuestionsAnswer>> GetAnswersByUserAsync(int userId)
-        //{
-        //    return await _answerRepository.GetAnswersByUserAsync(userId);
-        //}
         public async Task SubmitAnswersAsync(SubmitAnswersRequestDto dto)
         {
 
@@ -38,7 +29,7 @@ namespace Services
                 {
                     QuestionId = ans.Id,
                     UserId = dto.UserId,
-                    Answer = ans.QuestionType == 1 ? ans.Answer : ans.Answer // لو اختياري يبقى OptionId كـ string
+                    Answer = ans.QuestionType == 1 ? ans.Answer : ans.Answer 
                 };
 
                 await _answerRepository.AddAnswerAsync(answerEntity);
@@ -53,87 +44,6 @@ namespace Services
                     };
                     await _answerRepository.AddCommentAsync(comment);
                 }
-
-                //////// 3- Save Image (if provided)
-                //if (ans.Image != null)
-                //{
-                //    var uploadsFolder = Path.Combine(_env.WebRootPath, "uploads/questions");
-                //    if (!Directory.Exists(uploadsFolder))
-                //        Directory.CreateDirectory(uploadsFolder);
-
-                //    var fileName = $"{Guid.NewGuid()}{Path.GetExtension(ans.Image.FileName)}";
-                //    var filePath = Path.Combine(uploadsFolder, fileName);
-
-                //    using (var stream = new FileStream(filePath, FileMode.Create))
-                //    {
-                //        await ans.Image.CopyToAsync(stream);
-                //    }
-
-                //    var image = new QuestionImage
-                //    {
-                //        QuestionId = ans.Id,
-                //        ImagePath = $"/uploads/questions/{fileName}"
-                //    };
-                //    await _answerRepository.AddImageAsync(image);
-                //}
-
-                //////// 3- Save Image (if provided as Base64 string)
-                //if (!string.IsNullOrEmpty(ans.Image))
-                //{
-                //    //var uploadsFolder = Path.Combine(_env.WebRootPath, "uploads", "questions");
-                //    var rootPath = _env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-                //    var uploadsFolder = Path.Combine(rootPath, "uploads", "questions");
-
-                //    if (!Directory.Exists(uploadsFolder))
-                //        Directory.CreateDirectory(uploadsFolder);
-
-                //    var fileName = $"{Guid.NewGuid()}.jpg"; // دايماً JPG أو حسب اللي جاي من الفرونت
-                //    var filePath = Path.Combine(uploadsFolder, fileName);
-
-                //    try
-                //    {
-                //        // تحويل Base64 → Bytes
-                //        var imageBytes = Convert.FromBase64String(ans.Image);
-                //        await File.WriteAllBytesAsync(filePath, imageBytes);
-
-                //        var image = new QuestionImage
-                //        {
-                //            QuestionId = ans.Id,
-                //            ImagePath = $"/uploads/questions/{fileName}" // بيتخزن في الداتا بيز
-                //        };
-                //        await _answerRepository.AddImageAsync(image);
-                //    }
-                //    catch (FormatException fex)
-                //    {
-                //        Console.WriteLine("Invalid Base64 for image: " + fex.Message);
-                //        // ممكن تتجاهل الصورة أو ترمي Exception
-                //    }
-                //}
-
-                ////// 3- Save Image (if provided as Base64)
-                //if (!string.IsNullOrEmpty(ans.Image))
-                //{
-                //    var rootPath = _env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-                //    var uploadsFolder = Path.Combine(rootPath, "uploads", "questions");
-
-                //    if (!Directory.Exists(uploadsFolder))
-                //        Directory.CreateDirectory(uploadsFolder);
-
-                //    var fileName = $"{Guid.NewGuid()}.jpg"; // أو .png لو محتاج
-                //    var filePath = Path.Combine(uploadsFolder, fileName);
-
-                //    // حوّل Base64 لبايتات
-                //    var imageBytes = Convert.FromBase64String(ans.Image);
-                //    await File.WriteAllBytesAsync(filePath, imageBytes);
-
-                //    var image = new QuestionImage
-                //    {
-                //        QuestionId = ans.Id,
-                //        ImagePath = $"/uploads/questions/{fileName}"
-                //    };
-                //    await _answerRepository.AddImageAsync(image);
-                //}
-
 
                 if (!string.IsNullOrEmpty(ans.Image))
                 {
@@ -177,7 +87,6 @@ namespace Services
 
             }
 
-            //await _answerRepository.SaveAsync();
             try
             {
                 await _answerRepository.SaveAsync();
@@ -190,11 +99,6 @@ namespace Services
 
         }
 
-
-        //public async Task<UserAnswersResponseDto?> GetUserAnswersAsync(int userId)
-        //{
-        //    return await _answerRepository.GetUserAnswersAsync(userId);
-        //}
 
         public async Task<UserAnswersResponseDto?> GetUserAnswersAsync(int userId)
         {
@@ -215,7 +119,6 @@ namespace Services
                 Answers = answers.Select(a => new QuestionAnswerDto
                 {
                     QuestionId = a.QuestionId,
-                    //
                     QuestionnaireId=a.Question.QuestionnaireId,
                     QuestionType=a.Question.QuestionType,
                     QuestionText = a.Question?.QuestionHeader ?? "",
@@ -231,38 +134,6 @@ namespace Services
             };
         }
 
-
-
     }
-
 }
 
-
-//[ApiController]
-//[Route("[controller]")]
-
-//public class uploadfileListController : Controller
-//{
-//    [HttpPost(Name = "uploadfileList")]
-//    public bool POST(List<IFormFile> Filex, string Folder, string? FullPath)
-//    {
-//        try
-//        {
-//            string uploads = FullPath ?? Path.Combine(Directory.GetCurrentDirectory(), "upload");
-//            string pathToSave = Path.Combine(uploads, Folder);
-//            if (!Directory.Exists(pathToSave)) Directory.CreateDirectory(pathToSave);
-//            Filex.ForEach(x => {
-//                string fullPath = Path.Combine(pathToSave, x.FileName);
-//                using FileStream stream = new(fullPath, FileMode.Create);
-//                x.CopyTo(stream);
-//            });
-//            return true;
-//        }
-//        catch (Exception)
-//        {
-//            return false;
-//        }
-
-
-//    }
-//}

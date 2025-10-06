@@ -14,12 +14,6 @@ namespace Presentation.Controllers
     [Route("api/[controller]")]
     public class BranchController(IBranchService _branchService, IMapper _mapper) : ControllerBase
     {
-        //[HttpGet("AllBranches")]
-        //public async Task<IActionResult> GetAllBranches()
-        //{
-        //    var branches = await _branchService.GetAllAsync();
-        //    return Ok(branches);
-        //}
         [HttpGet("AllBranches")]
         public async Task<IActionResult> GetAllBranches()
         {

@@ -12,48 +12,6 @@ namespace Presistance.Repositories
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
-
-        //#region Get
-
-        //public TEntity? GetById(int id)
-        //    => _appContext.Set<TEntity>().Find(id);
-
-        //public IEnumerable<TEntity> GetAll()
-        //    => _appContext.Set<TEntity>().ToList();
-
-        //public IEnumerable<TResult> GetAll<TResult>(Expression<Func<TEntity, TResult>> selector)
-        //{
-        //    return _appContext.Set<TEntity>()
-        //        .Select(selector);
-        //}
-
-        //public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> filter)
-        //{
-        //    return _appContext.Set<TEntity>()
-        //              .Where(filter)
-        //              .ToList();
-        //}
-
-        //#endregion
-
-        //public int Add(TEntity entity)
-        //{
-        //    _appContext.Set<TEntity>().Add(entity);
-        //    return _appContext.SaveChanges();
-        //}
-
-        //public int Update(TEntity entity)
-        //{
-        //    _appContext.Set<TEntity>().Update(entity);
-        //    return _appContext.SaveChanges();
-        //}
-
-        //public int Remove(TEntity entity)
-        //{
-        //    _appContext.Set<TEntity>().Remove(entity);
-        //    return _appContext.SaveChanges();
-        //}
-
         private readonly SurveyAppContext _context;
         private readonly DbSet<TEntity> _dbSet;
 

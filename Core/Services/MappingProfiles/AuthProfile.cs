@@ -18,7 +18,6 @@ namespace Services.MappingProfiles
                 .ForMember(dest => dest.DepartmentId, opt => opt.MapFrom(src => src.UserDepartment))
                 .ForMember(dest => dest.IsManager, opt => opt.MapFrom(src => src.UserGroupNavigation.UserGroupName == "Manager"));
 
-
             //
             CreateMap<SignupRequestDto, User>();
             CreateMap<User, SignupResponseDto>();

@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 #region Add services to the container
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -46,7 +46,6 @@ builder.Services.AddAutoMapper(p => p.AddProfile(new DepartmentProfile()));
 builder.Services.AddAutoMapper(p => p.AddProfile(new QuestionnaireProfile()));
 builder.Services.AddAutoMapper(p => p.AddProfile(new QuestionProfile()));
 
-//
 // Add CORS
 builder.Services.AddCors(options =>
 {
@@ -56,7 +55,7 @@ builder.Services.AddCors(options =>
             policy
                 .AllowAnyHeader()
                 .AllowAnyMethod()
-                .AllowAnyOrigin(); // ?? „› ÊÕ… ·√Ì IP (·Ê ⁄«Ì“  ﬁÌ¯œ ÂﬁÊ·ﬂ  Õ )
+                .AllowAnyOrigin(); 
         });
 });
 
@@ -71,13 +70,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-//
 // Execute CORS
 app.UseCors("AllowLocalNetwork");
 

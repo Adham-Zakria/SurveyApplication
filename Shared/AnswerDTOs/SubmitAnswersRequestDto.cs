@@ -9,13 +9,8 @@ namespace Shared.AnswerDTOs
 {
     public class SubmitAnswersRequestDto
     {
-        //[FromForm(Name = "user_id")]
         public int UserId { get; set; }
-
-        //[FromForm(Name = "branch_id")]
         public int BranchId { get; set; }
-
-        //[FromForm]
         public List<SubmitAnswerDto> Answers { get; set; }
     }
 }

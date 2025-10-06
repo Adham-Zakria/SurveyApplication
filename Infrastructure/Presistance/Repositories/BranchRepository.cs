@@ -25,5 +25,4 @@ namespace Presistance.Repositories
                 .ToListAsync();
         }
     }
-
 }

@@ -13,15 +13,11 @@ namespace Services.MappingProfiles
     {
         public QuestionnaireProfile()
         {
-            //CreateMap<Questionnaire, CreateQuestionnaireDto>().ReverseMap()
-            //    //.ForMember(dest => dest.Department, opt => opt.MapFrom(src => src.DepartmentId))
-            //    .ForMember(dest => dest.Department, opt => opt.MapFrom(src => src.DepartmentId));
             CreateMap<Questionnaire, CreateQuestionnaireDto>()
                 .ForMember(dest => dest.DepartmentId, opt => opt.MapFrom(src => src.Department));
 
             CreateMap<CreateQuestionnaireDto, Questionnaire>()
                 .ForMember(dest => dest.Department, opt => opt.MapFrom(src => src.DepartmentId));
-
 
             CreateMap<Question, QuestionDto>().ReverseMap();
             CreateMap<QuestionOption, QuestionOptionDto>().ReverseMap();

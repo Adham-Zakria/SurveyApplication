@@ -35,8 +35,6 @@ public partial class SurveyAppContext : DbContext
 
     public virtual DbSet<UserGroup> UserGroups { get; set; }
 
-    //
-    //public DbSet<QuestionnaireBranch> QuestionnaireBranches { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -194,7 +192,6 @@ public partial class SurveyAppContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .HasConstraintName("FK__questionn__user___31EC6D26");
 
-            //--------------------------------------------------------------------------------------------------------------------------
             entity.HasMany(d => d.Branches).WithMany(p => p.Questionnaires)
                 .UsingEntity<Dictionary<string, object>>(
                     "QuestionnairesBranch",
@@ -291,39 +288,6 @@ public partial class SurveyAppContext : DbContext
             .HasKey(qa => new { qa.QuestionId, qa.UserId });
 
         base.OnModelCreating(modelBuilder);
-
-        //
-        //modelBuilder.Entity<QuestionnaireBranch>()
-        //     .ToTable("questionnaires_branchs");
-
-        //modelBuilder.Entity<QuestionnaireBranch>()
-        //     .HasKey(qb => new { qb.QuestionnaireId, qb.BranchId });
-
-        //modelBuilder.Entity<QuestionnaireBranch>()
-        //    .HasOne(qb => qb.Questionnaire)
-        //    .WithMany(q => q.QuestionnairesBranches)
-        //    .HasForeignKey(qb => qb.QuestionnaireId);
-
-        //modelBuilder.Entity<QuestionnaireBranch>()
-        //    .HasOne(qb => qb.Branch)
-        //    .WithMany(b => b.QuestionnairesBranches)
-        //    .HasForeignKey(qb => qb.BranchId);
-
-        //modelBuilder.Entity<QuestionnaireBranch>(entity =>
-        //{
-        //    entity.ToTable("questionnaires_branchs"); // اسم الجدول في DB
-
-        //    entity.HasKey(qb => qb.Id); // أو المفتاح الأساسي الفعلي
-
-        //    // العلاقات
-        //    entity.HasOne(qb => qb.Questionnaire)
-        //          .WithMany(q => q.QuestionnairesBranches)
-        //          .HasForeignKey(qb => qb.QuestionnaireId);
-
-        //    entity.HasOne(qb => qb.Branch)
-        //          .WithMany()
-        //          .HasForeignKey(qb => qb.BranchId);
-        //});
 
     }
 

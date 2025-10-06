@@ -17,6 +17,4 @@ public partial class Branch
 
     public virtual ICollection<Questionnaire> Questionnaires { get; set; } = new List<Questionnaire>();
 
-    //
-    //public ICollection<QuestionnaireBranch> QuestionnairesBranches { get; set; } = new List<QuestionnaireBranch>();
 }

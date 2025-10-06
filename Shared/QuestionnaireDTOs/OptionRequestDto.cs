@@ -8,7 +8,6 @@ namespace Shared.QuestionnaireDTOs
 {
     public class OptionRequestDto
     {
-        //public long OptionId { get; set; }
         public string OptionHeader { get; set; }
     }
 }

@@ -10,13 +10,9 @@ namespace Shared.AuthDTOs
     {
         public int UserId { get; set; }
         public string Username { get; set; }
-        ////public string FullName { get; set; }
         public bool IsManager { get; set; }
         public int? DepartmentId { get; set; }
         public int UserGroup { get; set; }
-        ////public string BranchName { get; set; }
-        //public int BranchId { get; set; }
-
     }
 }
  

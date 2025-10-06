@@ -13,21 +13,6 @@ namespace Services.MappingProfiles
     {
         public AnswerProfile()
         {
-            //CreateMap<QuestionsAnswer, AnswerRequestDto>().ReverseMap();
-            //CreateMap<QuestionsAnswer, AnswerResponseDto>()
-            //    .ForMember(dest => dest.QuestionHeader, opt => opt.MapFrom(src => src.Question.QuestionHeader))
-            //    .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.User.UserName));
-
-
-            //CreateMap<QuestionsAnswer, AnswerRequestDto>().ReverseMap();
-
-            //CreateMap<QuestionsAnswer, AnswerResponseDto>()
-            //    .ForMember(dest => dest.QuestionHeader,
-            //               opt => opt.MapFrom(src => src.Question.QuestionHeader))
-            //    .ForMember(dest => dest.Username,
-            //               opt => opt.MapFrom(src => src.User.UserName));
-
-
             CreateMap<QuestionsAnswer, AnswerResponseDto>()
                  .ForMember(dest => dest.QuestionHeader,
                             opt => opt.MapFrom(src => src.Question.QuestionHeader))
@@ -36,12 +21,8 @@ namespace Services.MappingProfiles
                  .ForMember(dest => dest.QuestionnaireId,
                             opt => opt.MapFrom(src => src.Question.QuestionnaireId));
 
-
-
             //
             CreateMap<AnswerRequestDto, QuestionsAnswer>().ReverseMap();
-                
-
 
         }
     }

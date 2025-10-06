@@ -18,25 +18,6 @@ namespace Presistance.Repositories
             _context = context;
         }
 
-        //public async Task<IEnumerable<Questionnaire>> GetByDepartmentAndBranchAsync(int departmentId, int branchId)
-        //{
-        //    return await _context.Questionnaires
-        //        .Include(q => q.Questions)
-        //        .Where(q => q.Department == departmentId && q.Branches.Any(b => b.BranchId == branchId))
-        //        .ToListAsync();
-        //}
-
-        //public async Task<IEnumerable<Question>> GetQuestionsByDepartmentBranchUserAsync(int departmentId, int branchId, int userId)
-        //{
-        //    return await _context.Questionnaires
-        //        .Where(q => q.Department == departmentId
-        //                    && q.Branches.Any(b => b.BranchId == branchId)
-        //                    && q.UserId == userId)
-        //        .SelectMany(q => q.Questions) // Load the questions
-        //        .Include(q => q.QuestionOptions) // Load the Options
-        //        .ToListAsync();
-        //}
-
         public async Task<IEnumerable<Question>> GetQuestionsByDepartmentBranchUserAsync(int departmentId, int branchId, int userId)
         {
             // retrive all questionnaires for department & branch
@@ -59,8 +40,6 @@ namespace Presistance.Repositories
 
             return unanswered;
         }
-
-
 
     }
 }

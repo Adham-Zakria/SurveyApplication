@@ -46,7 +46,7 @@ namespace Services
 
         public async Task<User> SignupAsync(User newUser, string plainPassword)
         {
-            // check لو الـ UserId موجود
+            // check the user's id
             var exists = await _userRepository.GetByIdAsync(newUser.UserId);
             if (exists is not null)
                 throw new Exception("User already exists");
@@ -66,92 +66,17 @@ namespace Services
             if (user == null)
                 throw new Exception("User not found");
 
-            // تحقق من الباسورد القديم
+            // Check the old password
             var result = _passwordHasher.VerifyHashedPassword(user, user.UserPassword, oldPassword);
             if (result != PasswordVerificationResult.Success)
                 throw new Exception("Old password is incorrect");
 
-            // Hash الباسورد الجديد
+            // New password hashing
             user.UserPassword = _passwordHasher.HashPassword(user, newPassword);
 
             _userRepository.Update(user);
             await _userRepository.SaveAsync();
         }
-
-
-        //public async Task<(User user, Branch branch)> LoginAsync(int userCode, string password)
-        //{
-        //    var user = await _userRepository.AuthenticateAsync(userCode, password);
-        //    if (user == null) return (null, null);
-
-        //    var clientIp = _httpContextAccessor.HttpContext?.Connection?.RemoteIpAddress?.ToString();
-        //    var branch = await FindBranchByIp(clientIp);
-
-        //    return (user, branch);
-        //}
-
-
-        //private async Task<Branch> FindBranchByIp(string clientIp)
-        //{
-        //    if (string.IsNullOrEmpty(clientIp)) return null;
-
-        //    var branches = await _branchRepository.GetAllAsync();
-        //    foreach (var branch in branches)
-        //    {
-        //        if (branch.BranchIp == clientIp)
-        //            return branch;
-        //    }
-
-        //    return null;
-        //}
-
-
-        ////
-        //public async Task<User> SignupAsync(User newUser)
-        //{
-        //    // check لو الـ UserId موجود
-        //    var exists = await _userRepository.GetByIdAsync(newUser.UserId);
-        //    if (exists is not null)
-        //        throw new Exception("User already exists");
-
-        //    await _userRepository.AddAsync(newUser);
-        //    await _userRepository.SaveAsync();
-
-        //    return newUser;
-        //}
-
-
-
-
-
-
-        //--------------------------------------------------
-
-        //public async Task<(User user, Branch branch)> LoginAsync(string branchIp, int userCode, string password)
-        //{
-        //    var user = await _userRepository.AuthenticateAsync(userCode, password);
-        //    if (user == null) return (null, null);
-
-        //    // الأول ناخد من request dto
-        //    var branch = await FindBranchByIp(branchIp);
-
-        //    // fallback لو ال branchIp فاضي أو مش لاقي فرع
-        //    if (branch == null)
-        //    {
-        //        var clientIp = _httpContextAccessor.HttpContext?.Connection?.RemoteIpAddress?.ToString();
-        //        branch = await FindBranchByIp(clientIp);
-        //    }
-
-        //    return (user, branch);
-        //}
-
-
-        //private async Task<Branch> FindBranchByIp(string branchIp)
-        //{
-        //    if (string.IsNullOrEmpty(branchIp)) return null;
-
-        //    var branches = await _branchRepository.GetAllAsync();
-        //    return branches.FirstOrDefault(b => b.BranchIp == branchIp);
-        //}
+        
     }
 }

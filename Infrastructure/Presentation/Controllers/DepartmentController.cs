@@ -14,14 +14,6 @@ namespace Presentation.Controllers
     [Route("api/[controller]")]
     public class DepartmentController(IDepartmentService _departmentService,IMapper _mapper) : ControllerBase
     {
-
-
-        //[HttpGet("AllDepartments")]
-        //public async Task<IActionResult> GetAllDepartments()
-        //{
-        //    var departments = await _departmentService.GetAllAsync();
-        //    return Ok(departments);
-        //}
         [HttpGet("AllDepartments")]
         public async Task<IActionResult> GetAllDepartments()
         {

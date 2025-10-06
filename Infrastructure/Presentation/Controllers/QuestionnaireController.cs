@@ -15,21 +15,6 @@ namespace Presentation.Controllers
     [Route("api/[controller]")]
     public class QuestionnaireController(IQuestionnaireService _questionnaireService, IMapper _mapper) : ControllerBase
     {
-        //[HttpPost("create")]
-        //public async Task<IActionResult> CreateQuestionnaire([FromBody] Questionnaire questionnaire)
-        //{
-        //    var created = await _questionnaireService.CreateQuestionnaireAsync(questionnaire);
-        //    return Ok(created);
-        //}
-
-        //[HttpPost("create")]
-        //public async Task<IActionResult> Create([FromBody] CreateQuestionnaireDto dto)
-        //{
-        //    var questionnaire = _mapper.Map<Questionnaire>(dto);
-        //    var created = await _questionnaireService.CreateQuestionnaireAsync(questionnaire);
-        //    return Ok(_mapper.Map<CreateQuestionnaireDto>(created));
-        //}
-
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] CreateQuestionnaireDto dto)
         {
@@ -43,13 +28,6 @@ namespace Presentation.Controllers
                 return BadRequest(new { error = ex.Message });
             }
         }
-
-        //[HttpPost("add-question")]
-        //public async Task<IActionResult> AddQuestion([FromBody] Question question)
-        //{
-        //    var created = await _questionnaireService.AddQuestionAsync(question);
-        //    return Ok(created);
-        //}
 
         [HttpPost("add-question")]
         public async Task<IActionResult> AddQuestion([FromBody] QuestionDto dto)
@@ -79,30 +57,7 @@ namespace Presentation.Controllers
             var created = await _questionnaireService.AddCommentAsync(comment);
             return Ok(created);
         }
-
-        //[HttpGet("get/{departmentId}/{branchId}")]
-        //public async Task<IActionResult> GetQuestionnaires(int departmentId, int branchId)
-        //{
-        //    var questionnaires = await _questionnaireService.GetByDepartmentAndBranchAsync(departmentId, branchId);
-        //    return Ok(questionnaires);
-        //}
-
-        //[HttpGet("{departmentId}/{branchId}")]
-        //public async Task<IActionResult> GetQuestionnaireByDepartmentAndBranch(int departmentId, int branchId)
-        //{
-        //    var questionnaires = await _questionnaireService.GetByDepartmentAndBranchAsync(departmentId, branchId);
-        //    return Ok(_mapper.Map<IEnumerable<CreateQuestionnaireDto>>(questionnaires));
-        //}
-
-        //[HttpGet("{departmentId}/{branchId}/{userId}")]
-        //public async Task<IActionResult> GetQuestions(int departmentId, int branchId, int userId)
-        //{
-        //    var questions = await _questionnaireService.GetQuestionsByDepartmentBranchUserAsync(departmentId, branchId, userId);
-
-        //    var response = _mapper.Map<IEnumerable<QuestionResponseDto>>(questions);
-
-        //    return Ok(response);
-        //}
+       
         [HttpGet("{departmentId}/{branchId}/{userId}")]
         public async Task<IActionResult> GetQuestions(int departmentId, int branchId, int userId)
         {
@@ -127,7 +82,6 @@ namespace Presentation.Controllers
             var result = _mapper.Map<IEnumerable<QuestionResponseDto>>(questions);
             return Ok(result);
         }
-
 
     }
 }
