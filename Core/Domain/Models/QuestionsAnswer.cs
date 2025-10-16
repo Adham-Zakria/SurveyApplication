@@ -16,4 +16,9 @@ public partial class QuestionsAnswer
     public virtual Question Question { get; set; }
 
     public virtual User User { get; set; }
+
+    // 
+    public int? BranchId { get; set; }
+    public virtual Branch Branch { get; set; }
+
 }

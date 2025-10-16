@@ -35,6 +35,9 @@ public partial class SurveyAppContext : DbContext
 
     public virtual DbSet<UserGroup> UserGroups { get; set; }
 
+    //
+    public virtual DbSet<UserBranch> UserBranches { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -213,7 +216,7 @@ public partial class SurveyAppContext : DbContext
         modelBuilder.Entity<QuestionsAnswer>(entity =>
         {
             entity
-                .HasNoKey()
+                //.HasNoKey()
                 .ToTable("questions_answers");
 
             entity.Property(e => e.Answer)
@@ -222,6 +225,8 @@ public partial class SurveyAppContext : DbContext
                 .HasColumnName("answer");
             entity.Property(e => e.QuestionId).HasColumnName("question_id");
             entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.BranchId).HasColumnName("branch_id"); 
+
 
             entity.HasOne(d => d.Question).WithMany()
                 .HasForeignKey(d => d.QuestionId)
@@ -231,6 +236,13 @@ public partial class SurveyAppContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__questions__user___48CFD27E");
+
+            //
+            entity.HasOne(e => e.Branch)
+                .WithMany()
+                .HasForeignKey(e => e.BranchId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__questions__branch__49CFD27E");
         });
 
         modelBuilder.Entity<User>(entity =>
@@ -286,6 +298,20 @@ public partial class SurveyAppContext : DbContext
         //
         modelBuilder.Entity<QuestionsAnswer>()
             .HasKey(qa => new { qa.QuestionId, qa.UserId });
+
+        //
+        modelBuilder.Entity<UserBranch>(entity =>
+        {
+            entity.HasKey(e => new { e.UserId, e.BranchId });
+
+            entity.HasOne(e => e.User)
+                .WithMany(u => u.UserBranches)
+                .HasForeignKey(e => e.UserId);
+
+            entity.HasOne(e => e.Branch)
+                .WithMany(b => b.UserBranches)
+                .HasForeignKey(e => e.BranchId);
+        });
 
         base.OnModelCreating(modelBuilder);
 

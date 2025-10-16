@@ -24,4 +24,8 @@ public partial class User
     public virtual Department UserDepartmentNavigation { get; set; }
 
     public virtual UserGroup UserGroupNavigation { get; set; }
+
+    //
+    public virtual ICollection<UserBranch> UserBranches { get; set; } = new List<UserBranch>();
+
 }

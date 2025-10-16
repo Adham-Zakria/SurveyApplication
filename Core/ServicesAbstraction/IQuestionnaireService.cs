@@ -16,5 +16,6 @@ namespace ServicesAbstraction
         Task<QuestionImage> AddImageAsync(QuestionImage image);
         Task<QuestionComment> AddCommentAsync(QuestionComment comment);
         Task<IEnumerable<Question>> GetQuestionsByDepartmentBranchUserAsync(int departmentId, int branchId, int userId);
+        Task<IEnumerable<PreviousQuestionnairesDto>> GetManagerQuestionnairesAsync(int userId);
     }
 }

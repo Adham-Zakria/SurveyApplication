@@ -66,6 +66,8 @@ namespace Presistance.Repositories
         {
             return await _context.QuestionsAnswers
                 .Where(a => a.UserId == userId)
+                //
+                .Include(a=>a.Branch)
                 .Include(a => a.Question)
                     .ThenInclude(q => q.QuestionOptions) // get options' headers
                 .ToListAsync();

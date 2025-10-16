@@ -41,5 +41,31 @@ namespace Presistance.Repositories
             return unanswered;
         }
 
+        //
+        //public async Task<IEnumerable<Questionnaire>> GetByManagerIdAsync(int userId)
+        //{
+        //    return await _context.Questionnaires
+        //        .Include(q => q.DepartmentNavigation)
+        //        .Where(q => q.UserId == userId)
+        //        .OrderByDescending(q => q.QuestionnaireCreatedDate)
+        //        .ToListAsync();
+        //}
+
+        public async Task<IEnumerable<Questionnaire>> GetByManagerIdAsync(int userId)
+        {
+            return await _context.Questionnaires
+                .Where(q => q.UserId == userId)
+                .Include(q => q.DepartmentNavigation)
+                .Include(q => q.Questions)
+                    .ThenInclude(qs => qs.QuestionImages)
+                .Include(q => q.Questions)
+                    .ThenInclude(qs => qs.QuestionOptions)
+                .Include(q => q.Questions)
+                    .ThenInclude(qs => qs.QuestionComments)
+                .ToListAsync();
+        }
+
+
+
     }
 }

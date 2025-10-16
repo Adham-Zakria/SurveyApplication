@@ -83,5 +83,17 @@ namespace Presentation.Controllers
             return Ok(result);
         }
 
+
+        //
+        [HttpGet("user/{userId}/previous")]
+        public async Task<IActionResult> GetUserPreviousQuestionnaires(int userId)
+        {
+            var questionnaires = await _questionnaireService.GetManagerQuestionnairesAsync(userId);
+            if (questionnaires == null || !questionnaires.Any())
+                return NotFound("No previous questionnaires found for this user.");
+
+            return Ok(questionnaires);
+        }
+
     }
 }

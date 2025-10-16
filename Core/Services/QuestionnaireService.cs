@@ -32,7 +32,7 @@ namespace Services
 
                 // Branches which got from repository
                 Branches = branches,
-
+                
                 // Add questions with options
                 Questions = dto.Questions.Select(q => new Question
                 {
@@ -83,6 +83,42 @@ namespace Services
         {
             return await _questionnaireRepository.GetQuestionsByDepartmentBranchUserAsync(departmentId, branchId, userId);
         }
+
+
+        public async Task<IEnumerable<PreviousQuestionnairesDto>> GetManagerQuestionnairesAsync(int userId)
+        {
+            var questionnaires = await _questionnaireRepository.GetByManagerIdAsync(userId);
+
+            return questionnaires.Select(q => new PreviousQuestionnairesDto
+            {
+                QuestionnaireId = q.QuestionnaireId,
+                QuestionnaireCreatedDate = q.QuestionnaireCreatedDate,
+                Department = q.Department,
+
+                // Add Questions
+                Questions = q.Questions.Select(ques => new PreviousQuestionnaireQuestionsDto
+                {
+                    //QuestionId = ques.QuestionId,
+                    QuestionHeader = ques.QuestionHeader,
+                    QuestionType = ques.QuestionType,
+
+                    Options = ques.QuestionOptions.Select(opt => new QuestionOptionResponseDto
+                    {
+                        OptionId = opt.OptionId,
+                        OptionHeader = opt.QuestionHeader
+                    }).ToList(),
+
+                    Images = ques.QuestionImages.Select(img => new QuestionImageDto
+                    {
+                        QuestionId = img.QuestionId,
+                        ImagePath = img.ImagePath
+                    }).ToList()
+
+                }).ToList()
+
+            }).ToList();
+        }
+
 
     }
 }

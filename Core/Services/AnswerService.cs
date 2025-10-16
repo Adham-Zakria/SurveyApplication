@@ -29,7 +29,8 @@ namespace Services
                 {
                     QuestionId = ans.Id,
                     UserId = dto.UserId,
-                    Answer = ans.QuestionType == 1 ? ans.Answer : ans.Answer 
+                    Answer = ans.QuestionType == 1 ? ans.Answer : ans.Answer,
+                    BranchId = dto.BranchId
                 };
 
                 await _answerRepository.AddAnswerAsync(answerEntity);
@@ -123,7 +124,9 @@ namespace Services
                     QuestionType=a.Question.QuestionType,
                     QuestionText = a.Question?.QuestionHeader ?? "",
 
-                    //Answer = a.Answer,
+                    //
+                    BranchId = a.BranchId,
+                    BranchName = a.Branch?.BranchName,
                     Answer = a.Question.QuestionType == 2
                          ? a.Answer 
                          : a.Question.QuestionOptions.FirstOrDefault(o => o.OptionId.ToString() == a.Answer)?.QuestionHeader,

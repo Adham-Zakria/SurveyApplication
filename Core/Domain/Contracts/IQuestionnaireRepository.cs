@@ -10,5 +10,6 @@ namespace Domain.Contracts
     public interface IQuestionnaireRepository : IGenericRepository<Questionnaire>
     {
         Task<IEnumerable<Question>> GetQuestionsByDepartmentBranchUserAsync(int departmentId, int branchId, int userId);
+        Task<IEnumerable<Questionnaire>> GetByManagerIdAsync(int userId);
     }
 }

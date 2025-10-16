@@ -12,6 +12,11 @@ namespace Shared.AnswerDTOs
         public int QuestionnaireId { get; set; }
         public int QuestionType { get; set; }
         public string QuestionText { get; set; }
+
+        //
+        public string BranchName { get; set; }
+        public int? BranchId { get; set; }
+
         public string Answer { get; set; }
         public string? Comment { get; set; }
         public string? ImagePath { get; set; }
